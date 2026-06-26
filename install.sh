@@ -14,12 +14,7 @@ echo -e "${BLUE}---------------------------------------${NC}"
 echo -e "${BLUE}      AboutThisLinux Installer         ${NC}"
 echo -e "${BLUE}---------------------------------------${NC}"
 
-# check for interactive terminal redirect (if curled)
-if [ ! -t 0 ]; then
-    # redirect stdin from tty to allow interactive input if also piped from curl
-    exec 3<&0
-    exec < /dev/tty
-fi
+
 
 # distro detect
 detect_distro() {
@@ -46,7 +41,13 @@ install_deps() {
     fi
 
     echo -e "some dependencies (PyGObject, GTK 4, or Libadwaita) are missing."
-    read -p "would you like to install them now? (Requires sudo) [Y/n] " -r install_choice
+    if [ -t 0 ]; then
+        read -p "would you like to install them now? (Requires sudo) [Y/n] " -r install_choice
+    elif [ -c /dev/tty ]; then
+        read -p "would you like to install them now? (Requires sudo) [Y/n] " -r install_choice < /dev/tty
+    else
+        install_choice="Y"
+    fi
     install_choice=${install_choice:-Y}
     if [[ "$install_choice" =~ ^[Yy]$ ]]; then
         case "$DISTRO" in
@@ -142,10 +143,7 @@ if command -v update-desktop-database &>/dev/null; then
     update-desktop-database "$DESKTOP_DIR" &>/dev/null || true
 fi
 
-# restore original stdin if redirected
-if [ ! -t 0 ]; then
-    exec 0<&3
-fi
+
 
 echo -e "\n${GREEN}=======================================${NC}"
 echo -e "${GREEN}    installation finished successfully!  ${NC}"
