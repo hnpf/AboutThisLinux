@@ -146,7 +146,7 @@ fi
 
 
 echo -e "\n${GREEN}=======================================${NC}"
-echo -e "${GREEN}    installation finished successfully!  ${NC}"
+echo -e "${GREEN}  installation finished successfully!    ${NC}"
 echo -e "${GREEN}=======================================${NC}"
 echo -e "\nyou can run the application by typing: ${BLUE}about-this-linux${NC} in your terminal,"
 echo -e "or, you can look for ${BLUE}About This Linux${NC} in your system's application launcher/menu."
