@@ -212,7 +212,10 @@ class AboutMacWindow(Adw.ApplicationWindow):
         body.set_margin_start(32)
         body.set_margin_end(32)
 
-        img = Gtk.Image.new_from_file("./macpro.png")
+        import os
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        img_path = os.path.join(script_dir, "macpro.png")
+        img = Gtk.Image.new_from_file(img_path)
         img.set_pixel_size(180)
         img.set_margin_bottom(18)
         body.append(img)

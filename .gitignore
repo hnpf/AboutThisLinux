@@ -1,0 +1,9 @@
+# AppImage build directories and artifacts
+AboutThisLinux.AppDir/
+AboutThisLinux-x86_64.AppImage
+appimagetool-x86_64.AppImage
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
