@@ -174,7 +174,7 @@ class MoreInfoWindow(Adw.Window):
 
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         header = Adw.HeaderBar()
-        header.set_title_widget(Gtk.Label(label="System Specification Details"))
+        header.set_title_widget(Gtk.Label(label="System Details"))
         box.append(header)
 
         group = Adw.PreferencesGroup()
