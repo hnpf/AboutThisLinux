@@ -194,7 +194,6 @@ class AboutMacWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
         self.set_default_size(180, 630)
         self.set_resizable(False)
-        self.set_icon_name("about-this-linux")
 
         sys = get_sys_info()
         root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
