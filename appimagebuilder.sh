@@ -22,8 +22,8 @@ mkdir -p "$APP_DIR"/{usr/bin,usr/share/applications,usr/share/icons/hicolor/scal
 echo -e "${YELLOW}copying files...${NC}"
 cp about.py macpro.png "$APP_DIR/usr/bin/"
 chmod +x "$APP_DIR/usr/bin/about.py"
-cp macpro.png "$APP_DIR/about-this-linux.png"
-cp macpro.png "$APP_DIR/usr/share/icons/hicolor/scalable/apps/about-this-linux.png"
+cp x-office-presentation.svg "$APP_DIR/about-this-linux.svg"
+cp x-office-presentation.svg "$APP_DIR/usr/share/icons/hicolor/scalable/apps/about-this-linux.svg"
 
 # entrypoint, uses host python3 so gtk4/pyobject bindings don't break
 echo -e "${YELLOW}writing AppRun...${NC}"

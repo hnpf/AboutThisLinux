@@ -92,14 +92,16 @@ mkdir -p "$PIXMAP_DIR"
 
 # copying files
 # if run locally, copy files from current dir. if run via curl, download them.
-if [ -f "about.py" ] && [ -f "macpro.png" ]; then
+if [ -f "about.py" ] && [ -f "macpro.png" ] && [ -f "x-office-presentation.svg" ]; then
     echo -e "${YELLOW}Installing from local repository...${NC}"
     cp about.py "$INSTALL_DIR/"
     cp macpro.png "$INSTALL_DIR/"
+    cp x-office-presentation.svg "$INSTALL_DIR/"
 else
     echo -e "${YELLOW}getting latest release files from GitHub...${NC}"
     curl -sSL "https://raw.githubusercontent.com/hnpf/AboutThisLinux/main/about.py" -o "$INSTALL_DIR/about.py"
     curl -sSL "https://raw.githubusercontent.com/hnpf/AboutThisLinux/main/macpro.png" -o "$INSTALL_DIR/macpro.png"
+    curl -sSL "https://raw.githubusercontent.com/hnpf/AboutThisLinux/main/x-office-presentation.svg" -o "$INSTALL_DIR/x-office-presentation.svg"
 fi
 
 # set exec perms
@@ -114,8 +116,10 @@ EOF
 chmod +x "$BIN_DIR/about-this-linux"
 
 # copy the icon
-cp "$INSTALL_DIR/macpro.png" "$PIXMAP_DIR/about-this-linux.png"
-cp "$INSTALL_DIR/macpro.png" "$ICON_DIR/about-this-linux.png"
+rm -f "$PIXMAP_DIR/about-this-linux.png"
+rm -f "$ICON_DIR/about-this-linux.png"
+cp "$INSTALL_DIR/x-office-presentation.svg" "$PIXMAP_DIR/about-this-linux.svg"
+cp "$INSTALL_DIR/x-office-presentation.svg" "$ICON_DIR/about-this-linux.svg"
 
 # make a .desktop file
 echo -e "${YELLOW}Creating desktop entry...${NC}"
