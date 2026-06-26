@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# handle -f flag
+force=false
+if [ "$1" == "-f" ]; then
+    force=true
+fi
+
+# check for changes (including staged ones)
+if [ -z "$(git status --porcelain)" ] && [ "$force" = false ]; then
+    echo "nothing to commit lol"
+    exit 0
+fi
+
+curr=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$force" = true ]; then
+    echo "forcing push to $curr..."
+    git push origin "$curr" --force
+    exit 0
+fi
+
+# standard flow
+echo "--- current changes ---"
+git diff --stat
+git add .
+
+read -p "title: " title
+read -p "desc: " desc
+
+if [ -z "$desc" ]; then
+    git commit -m "$title"
+else
+    git commit -m "$title" -m "$desc"
+fi
+
+echo -e "\n--- ready to push to $curr? ---"
+git log -1 --stat
+read -p "confirm push? [y/N]: " confirm
+
+if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    git push origin "$curr"
+    echo "pushed."
+else
+    echo "aborting push."
+fi
