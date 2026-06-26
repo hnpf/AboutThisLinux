@@ -22,8 +22,8 @@ mkdir -p "$APP_DIR"/{usr/bin,usr/share/applications,usr/share/icons/hicolor/scal
 echo -e "${YELLOW}copying files...${NC}"
 cp about.py macpro.png "$APP_DIR/usr/bin/"
 chmod +x "$APP_DIR/usr/bin/about.py"
-cp x-office-presentation.svg "$APP_DIR/about-this-linux.svg"
-cp x-office-presentation.svg "$APP_DIR/usr/share/icons/hicolor/scalable/apps/about-this-linux.svg"
+cp x-office-presentation.svg "$APP_DIR/lol.virex.AboutThisLinux.svg"
+cp x-office-presentation.svg "$APP_DIR/usr/share/icons/hicolor/scalable/apps/lol.virex.AboutThisLinux.svg"
 
 # entrypoint, uses host python3 so gtk4/pyobject bindings don't break
 echo -e "${YELLOW}writing AppRun...${NC}"
@@ -37,18 +37,19 @@ chmod +x "$APP_DIR/AppRun"
 
 # add desktop entry
 echo -e "${YELLOW}writing .desktop...${NC}"
-cat << EOF > "$APP_DIR/about-this-linux.desktop"
+cat << EOF > "$APP_DIR/lol.virex.AboutThisLinux.desktop"
 [Desktop Entry]
 Type=Application
 Name=About This Linux
 Comment=Your own computer, but make it look scarily close to macOS.
 Exec=about.py
-Icon=about-this-linux
+Icon=lol.virex.AboutThisLinux
 Categories=System;Utility;Settings;
 Terminal=false
 StartupNotify=true
+StartupWMClass=lol.virex.AboutThisLinux
 EOF
-cp "$APP_DIR/about-this-linux.desktop" "$APP_DIR/usr/share/applications/"
+cp "$APP_DIR/lol.virex.AboutThisLinux.desktop" "$APP_DIR/usr/share/applications/"
 
 # get appimagetool if missing
 if [ ! -f appimagetool-x86_64.AppImage ]; then

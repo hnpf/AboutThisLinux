@@ -119,24 +119,27 @@ chmod +x "$BIN_DIR/about-this-linux"
 # copy the icon
 rm -f "$PIXMAP_DIR/about-this-linux.png"
 rm -f "$ICON_DIR/about-this-linux.png"
-cp "$INSTALL_DIR/x-office-presentation.svg" "$PIXMAP_DIR/about-this-linux.svg"
-cp "$INSTALL_DIR/x-office-presentation.svg" "$ICON_DIR/about-this-linux.svg"
+rm -f "$PIXMAP_DIR/lol.virex.AboutThisLinux.svg"
+rm -f "$ICON_DIR/lol.virex.AboutThisLinux.svg"
+cp "$INSTALL_DIR/x-office-presentation.svg" "$PIXMAP_DIR/lol.virex.AboutThisLinux.svg"
+cp "$INSTALL_DIR/x-office-presentation.svg" "$ICON_DIR/lol.virex.AboutThisLinux.svg"
 
 # make a .desktop file
 echo -e "${YELLOW}Creating desktop entry...${NC}"
-cat << EOF > "$DESKTOP_DIR/about-this-linux.desktop"
+cat << EOF > "$DESKTOP_DIR/lol.virex.AboutThisLinux.desktop"
 [Desktop Entry]
 Type=Application
 Name=About This Linux
 Comment=Your own computer, but make it look scarily close to macOS.
 Exec=$BIN_DIR/about-this-linux
-Icon=about-this-linux
+Icon=lol.virex.AboutThisLinux
 Categories=System;Utility;Settings;
 Terminal=false
 StartupNotify=true
+StartupWMClass=lol.virex.AboutThisLinux
 EOF
 
-chmod +x "$DESKTOP_DIR/about-this-linux.desktop"
+chmod +x "$DESKTOP_DIR/lol.virex.AboutThisLinux.desktop"
 
 # try and update the desktop database if it even exists
 if command -v update-desktop-database &>/dev/null; then
